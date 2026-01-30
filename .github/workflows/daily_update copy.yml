@@ -1,0 +1,32 @@
+name: Update Data & Deploy
+
+on:
+  # Run automatically every day at 12:00 UTC (5:30 PM IST)
+  schedule:
+    - cron: '0 12 * * *'
+  # Allow manual trigger button in GitHub Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # --- PART 1: PYTHON DATA FETCH ---
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Python Deps
+        run: |
+          pip install requests
+
+      - name: Run Data Fetcher
+        run: |
+          python scripts/fetch_data.py

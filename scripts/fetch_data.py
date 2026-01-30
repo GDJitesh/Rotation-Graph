@@ -3,7 +3,7 @@ import json
 import os
 
 # Configuration
-OUTPUT_FILE = "public/market_data.json"
+OUTPUT_FILE = "/rg/public/market_data.json"
 FYERS_SECTOR_URL = "https://api-t1.fyers.in/indus/data/v1/get-sector"
 FYERS_STOCK_URL = "https://api-t1.fyers.in/indus/data/v1/get-stocks"
 

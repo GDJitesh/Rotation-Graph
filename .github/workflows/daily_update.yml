@@ -38,14 +38,18 @@ jobs:
           node-version: 18
 
       - name: Install NPM Packages
+        # Running from the 'web' subdirectory
         run: npm ci
+        working-directory: ./rg
 
       - name: Build React App
         run: npm run build
+        working-directory: ./rg
 
       # --- PART 3: DEPLOY TO PAGES ---
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: build    # The folder the build script generates.
+          branch: gh-pages
+          # Points to the build folder inside the 'web' directory
+          folder: web/rg
